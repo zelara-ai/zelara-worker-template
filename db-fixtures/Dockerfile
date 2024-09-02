@@ -1,5 +1,4 @@
-FROM postgres:13
+FROM mongo
 
-COPY fixture.sql /docker-entrypoint-initdb.d/
-
-CMD ["postgres"]
+COPY fixture.json /fixture.json
+CMD mongoimport --host db --db zelara_db --collection mycollection --type json --file /fixture.json --jsonArray

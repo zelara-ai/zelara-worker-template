@@ -1,7 +1,7 @@
 # Zelara Worker Template
 
 ## Overview
-This repository is a template for creating worker microservices as part of the Zelara project. A worker is responsible for handling background tasks, such as interacting with databases. This template is pre-configured to work with PostgreSQL and FastAPI, making it easy to set up and start developing.
+This repository is a template for creating worker microservices as part of the Zelara project. A worker is responsible for handling background tasks, such as interacting with databases. This template is pre-configured to work with **MongoDB** and FastAPI, making it easy to set up and start developing.
 
 ## Prerequisites
 Before running the project, ensure you have the following:
@@ -17,14 +17,14 @@ Before running the project, ensure you have the following:
    - Open the repository in VS Code.
    - Right-click on the `docker-compose.yml` file in the file explorer.
    - Select `Compose Up` from the context menu.
-   - Docker will build and start the services (PostgreSQL database and FastAPI application).
+   - Docker will build and start the services (MongoDB database and FastAPI application).
 
 3. **Access the Application**:
    - Once the services are running, you can access the FastAPI application at `http://localhost:8000/`.
 
 ## Developing with This Template
-1. **Update the SQL File**:
-   - The `db-fixtures/fixture.sql` file contains the initial database schema and data.
+1. **Update the Fixture File**:
+   - The `db-fixtures/fixture.json` file contains the initial database data.
    - Modify this file to change the database setup or add more sample data.
 
 2. **Modify the FastAPI Application**:

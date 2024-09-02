@@ -1,30 +1,24 @@
-import psycopg2
+from pymongo import MongoClient
 from fastapi import FastAPI, HTTPException
+import os
 
 app = FastAPI()
 
 def get_db_connection():
-    conn = psycopg2.connect(
-        host="db",
-        database="test_db",
-        user="user",
-        password="password"
-    )
-    return conn
+    client = MongoClient(os.getenv("MONGO_URL"))
+    db = client.zelara_db
+    return db
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"message": "Welcome to the Zelara Worker API"}
 
 @app.get("/api/data")
 def read_data():
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM mytable")
-    rows = cur.fetchall()
-    cur.close()
-    conn.close()
-    
+    db = get_db_connection()
+    collection = db["mycollection"]
+    rows = list(collection.find({}, {"_id": 0}))
+
     if not rows:
         raise HTTPException(status_code=404, detail="No data found")
 
